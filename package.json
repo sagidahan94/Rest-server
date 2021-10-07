@@ -1,0 +1,28 @@
+{
+  "name": "epicure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sagidMoveo/node-server.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sagidMoveo/node-server/issues"
+  },
+  "homepage": "https://github.com/sagidMoveo/node-server#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.9"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13",
+    "typescript": "^4.4.3"
+  }
+}
