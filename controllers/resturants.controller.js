@@ -1,6 +1,6 @@
-const resturantsService = require("../services/resturants.service");
+// import resturantsService from "../services/resturants.service.js";
 
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 // Create
@@ -23,4 +23,4 @@ router.delete("/resturants", (req, res, next) => {
   next();
 });
 
-module.exports = router;
+export default router;

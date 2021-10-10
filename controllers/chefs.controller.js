@@ -1,6 +1,6 @@
-const dishesService = require("../services/dishes.service");
+// import dishesService from "../services/dishes.service.js";
 
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 const chefs = [{ name: "Yossi", lastName: "shitrit" }];
@@ -12,7 +12,7 @@ router.post("/chef", (req, res, next) => {
 
 // Read
 router.get("/get-chef", (req, res, next) => {
-  res.send(chefs[0]);
+  // res.send(chefs[0]);
   next();
 });
 
@@ -26,4 +26,4 @@ router.delete("/chef", (req, res, next) => {
   next();
 });
 
-module.exports = router;
+export default router;

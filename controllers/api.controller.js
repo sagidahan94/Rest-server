@@ -1,12 +1,12 @@
-const dishesController = require("./dishes.controller");
-const chefsController = require("./chefs.controller");
-const resturantsController = require("./resturants.controller");
+import dishesRouter from "./dishes.controller.js";
+import chefsController from "./chefs.controller.js";
+import resturantsController from "./resturants.controller.js"; // change to import
 
-const { Router } = require("express");
+import { Router } from "express";
 const router = Router();
 
-router.use("/dishes", dishesController);
+router.use("/dishes", dishesRouter);
 router.use("/chefs", chefsController);
 router.use("/resturants", resturantsController);
 
-module.exports = router;
+export default router;

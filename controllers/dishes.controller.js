@@ -1,6 +1,6 @@
-const dishesService = require("../services/dishes.service");
+// import dishesService from "../services/dishes.service.js";
 
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 // Create
@@ -23,4 +23,4 @@ router.delete("/dishes", (req, res, next) => {
   next();
 });
 
-module.exports = router;
+export default router;
