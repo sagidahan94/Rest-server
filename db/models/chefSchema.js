@@ -1,14 +1,21 @@
 import mongoose from "mongoose";
 
-const chefSchema = new mongoose.Schema({
-  name: { String, required: true },
-  Image: { String, required: true },
-  description: { String, required: true },
+const Schema = mongoose.Schema;
+
+const chefSchema = new Schema({
+  name: { type: String, trim: true, required: true, default: "" },
+  image: { type: String, trim: true, required: true, default: "" },
+  description: { type: String, trim: true, required: true, default: "" },
   resturants: [
-    { type: Schema.Types.ObjectId, ref: "Resturant", required: true }, //check if capital
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Resturant",
+      required: true,
+      default: [],
+    },
   ],
 });
 
-const ChefModel = mongoose.model("Chef", chefSchema);
+const Chef = mongoose.model("Chef", chefSchema);
 
-export default ChefModel;
+export default Chef;

@@ -1,13 +1,22 @@
 import mongoose from "mongoose";
 
-const dishSchema = new mongoose.Schema({
-  name: { String, required: true },
-  age: { Number, required: true },
-  ingredients: { String, required: true, default: [] }, // to declare as object
-  tags: [],
-  reviews: [{ type: Schema.Types.ObjectId, ref: "review", required: true }],
+const Schema = mongoose.Schema;
+
+const dishSchema = Schema({
+  name: { type: String, trim: true, required: true, default: "" },
+  price: { type: Number, trim: true, required: true, default: 0 },
+  ingredients: { type: String, trim: true, required: true, default: [] }, // to declare as object
+  tags: [{ type: String, trim: true, default: [] }],
+  resturants: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Resturant",
+      required: true,
+      default: [],
+    },
+  ],
 });
 
-const DishModel = mongoose.model("Dish", dishSchema);
+const Dish = mongoose.model("Dish", dishSchema);
 
-export default DishModel;
+export default Dish;

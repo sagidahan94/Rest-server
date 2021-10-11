@@ -1,28 +1,33 @@
-// import dishesService from "../services/dishes.service.js";
+import ChefService from "../services/chefs.service.js";
 
 import express from "express";
 const router = express.Router();
 
-const chefs = [{ name: "Yossi", lastName: "shitrit" }];
-
 // Create
-router.post("/chef", (req, res, next) => {
+router.post("/", async (req, res, next) => {
+  const response = await ChefService.addChef(req.body);
+  res.json(response);
   next();
 });
 
 // Read
-router.get("/get-chef", (req, res, next) => {
-  // res.send(chefs[0]);
+router.get("/:id", async (req, res, next) => {
+  const response = await ChefService.getChef(req.params.id);
+  res.json(response);
   next();
 });
 
 // Update
-router.put("/chef", (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
+  const response = await ChefService.updateChef(req.body, req.params.id);
+  res.json(response);
   next();
 });
 
 // Delete
-router.delete("/chef", (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
+  const response = await ChefService.deleteChef(req.params.id);
+  res.json(response);
   next();
 });
 

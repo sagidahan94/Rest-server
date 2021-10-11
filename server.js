@@ -1,16 +1,11 @@
 import apiController from "./controllers/api.controller.js";
-import connectDB from "./db/dbConnect.js";
+import dbConnection from "./db/dbConnect.js";
 
 import express from "express";
 import cors from "cors";
 const app = express();
 
-// db.on("error", console.error.bind(console, "MongoDB connection error:"));
-// db.on("connected", (err, res) => {
-//   console.log("mongoose is connected");
-// });
-
-connectDB();
+dbConnection();
 
 app.use(cors());
 

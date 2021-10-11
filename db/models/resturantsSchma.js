@@ -1,12 +1,18 @@
 import mongoose from "mongoose";
 
-const resturantSchema = new mongoose.Schema({
-  name: { String, required: true },
-  image: { String, required: true },
-  chef: [{ type: Schema.Types.ObjectId, ref: "chef", required: true }],
-  dishes: [{ type: Schema.Types.ObjectId, ref: "dish", required: true }],
+const Schema = mongoose.Schema;
+
+const resturantSchema = Schema({
+  name: { type: String, trim: true, required: true, default: "" },
+  image: { type: String, trim: true, required: true, default: "" },
+  chef: [
+    { type: Schema.Types.ObjectId, ref: "Chef", required: true, default: [] },
+  ],
+  dishes: [
+    { type: Schema.Types.ObjectId, ref: "Dish", required: true, default: [] },
+  ],
 });
 
-const ResturantModel = mongoose.model("Resturant", resturantSchema);
+const Resturant = mongoose.model("Resturant", resturantSchema);
 
-export default ResturantModel;
+export default Resturant;

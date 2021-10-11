@@ -1,31 +1,46 @@
-import ChefModel from "../db/models/chefSchema";
+import Chef from "../db/models/chefSchema.js";
 
-export default getChef = (id) => {
-  ChefModel.find(id, (error, result) => {
-    if (error) {
-      return console.log(error);
-    }
-    return result;
-  });
-};
-
-export default addChef = (body) =>{
-    ChefModel.create(body).then((chef) => {
+class ChefService {
+  //create
+  static addChef = (body) => {
+    return Chef.create(body)
+      .then((chef) => {
         return chef;
-    }).catch((error) => console.log(error))
+      })
+      .catch((error) => console.log(error));
+  };
+
+  //read
+  static getChef = (id) => {
+    return Chef.findById(id)
+      .then((chef) => {
+        return chef;
+      })
+      .catch((error) => console.log(error));
+  };
+
+  //update
+  static updateChef = (body, id) => {
+    return Chef.findByIdAndUpdate(id, body)
+      .then(() => {
+        return Chef.findById(id);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  //delete
+  static deleteChef = (id) => {
+    return Chef.findByIdAndDelete(id)
+      .then((chef) => {
+        return chef;
+        s;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 }
 
-export default updateChef = (body, params) => {
-    ChefModel.findOneAndUpdate({_id: params.id},body).then((chef) => {
-        chef.findOne({_id: params.id}).then((chef) =>{
-            return chef;
-        }).catch((error) => { console.log(error)});
-    });
-}
-
-export default deleteChef = (params) => {
-    ChefModel.findOneAndDelete({_id: params.id}).then((chef) => {
-        return chef
-    }).catch((error) => {
-        console.log(error)
-    });}
+export default ChefService;

@@ -1,25 +1,36 @@
-// import resturantsService from "../services/resturants.service.js";
+import ResturantService from "../services/resturants.service.js";
 
 import express from "express";
 const router = express.Router();
 
 // Create
-router.post("/resturants", (req, res, next) => {
+router.post("/", async (req, res, next) => {
+  const response = await ResturantService.addResturant(req.body);
+  res.json(response);
   next();
 });
 
 // Read
-router.get("/resturants", (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
+  const response = await ResturantService.getResturant(req.params.id);
+  res.json(response);
   next();
 });
 
 // Update
-router.put("/resturants", (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
+  const response = await ResturantService.updateResturant(
+    req.body,
+    req.params.id
+  );
+  res.json(response);
   next();
 });
 
 // Delete
-router.delete("/resturants", (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
+  const response = await ResturantService.deleteResturant(req.params.id);
+  res.json(response);
   next();
 });
 
