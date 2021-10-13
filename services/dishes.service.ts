@@ -1,8 +1,18 @@
-import Dish from "../db/models/dishesSchema.js";
+import Dish from "../db/models/dishesSchema";
+import BaseService from "./BaseService";
 
+import mongoose from "mongoose";
+
+class DishService extends BaseService {
+  constructor(model: mongoose.Model<any, {}, {}, {}>) {
+    super(model);
+  }
+}
+
+/*
 class DishService {
   //create
-  static addDish = (body) => {
+  static addDish = (body: any) => {
     return Dish.create(body)
       .then((dish) => {
         return dish;
@@ -11,7 +21,7 @@ class DishService {
   };
 
   //read
-  static getDish = (id) => {
+  static getDish = (id: string) => {
     return Dish.findById(id)
       .then((dish) => {
         return dish;
@@ -20,7 +30,7 @@ class DishService {
   };
 
   //update
-  static updateDish = (body, id) => {
+  static updateDish = (body: any, id: string) => {
     return Dish.findByIdAndUpdate(id, body).then(() => {
       return Dish.findById(id).catch((error) => {
         console.log(error);
@@ -29,7 +39,7 @@ class DishService {
   };
 
   //delete
-  static deleteDish = (id) => {
+  static deleteDish = (id: string) => {
     return Dish.findByIdAndDelete(id)
       .then((dish) => {
         return dish;
@@ -40,4 +50,9 @@ class DishService {
   };
 }
 
-export default DishService;
+const DishService = new BaseService(Dish);
+*/
+
+const dishService = new DishService(Dish);
+
+export default dishService;

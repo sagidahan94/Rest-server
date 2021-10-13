@@ -1,5 +1,5 @@
-import apiController from "./controllers/api.controller.js";
-import dbConnection from "./db/dbConnect.js";
+import apiController from "./controllers/api.controller";
+import dbConnection from "./db/dbConnect";
 
 import express from "express";
 import cors from "cors";
