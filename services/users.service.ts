@@ -2,8 +2,14 @@ import { User } from "/Users/sagidahan/Desktop/Projects/node-server/db/models/us
 import BaseService from "./BaseService";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-
 import { Model } from "mongoose";
+
+declare var process: {
+  env: {
+    JWT_SECRET: string;
+    JWT_EXPIRE: number;
+  };
+};
 
 class UserService extends BaseService {
   constructor(model: Model<any, {}, {}, {}>) {
@@ -27,8 +33,9 @@ class UserService extends BaseService {
     } else {
       return {
         token: jwt.sign(
-          { email: user.email, fullName: user.fullName, _id: user._id },
-          "RESTFULAPIs"
+          { fullName: user.fullName, _id: user._id },
+          process.env.JWT_SECRET,
+          { expiresIn: process.env.JWT_EXPIRE }
         ),
       };
     }

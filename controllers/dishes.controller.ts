@@ -2,11 +2,7 @@ import DishService from "../services/dishes.service";
 import BaseController from "./BaseController";
 import { IBaseService } from "../services/BaseService";
 
-class DishesController extends BaseController {
-  constructor(service: IBaseService) {
-    super(service);
-  }
-}
+class DishesController extends BaseController {}
 
 const dishesController = new DishesController(DishService);
 

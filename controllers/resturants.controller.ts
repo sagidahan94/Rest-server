@@ -2,11 +2,7 @@ import { IBaseService } from "../services/BaseService";
 import ResturantService from "../services/resturants.service";
 import BaseController from "./BaseController";
 
-class RestController extends BaseController {
-  constructor(service: IBaseService) {
-    super(service);
-  }
-}
+class RestController extends BaseController {}
 
 const restController = new RestController(ResturantService);
 

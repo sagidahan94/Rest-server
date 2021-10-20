@@ -8,10 +8,10 @@ class BaseController {
   constructor(service: IBaseService) {
     this.router = Router();
     this.service = service;
-    this.initiailizeCRUDroutes();
+    this.initializeRoutes();
   }
 
-  protected initiailizeCRUDroutes(): void {
+  protected initializeRoutes(): void {
     this.router.post("/", this.create.bind(this));
     this.router.get("/:id", this.read.bind(this));
     this.router.put("/:id", this.update.bind(this));

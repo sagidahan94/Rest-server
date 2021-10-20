@@ -3,11 +3,7 @@ import BaseController from "./BaseController";
 
 import { IBaseService } from "../services/BaseService";
 
-class ChefController extends BaseController {
-  constructor(service: IBaseService) {
-    super(service);
-  }
-}
+class ChefController extends BaseController {}
 
 const chefController = new ChefController(ChefService);
 

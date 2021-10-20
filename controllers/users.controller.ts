@@ -3,20 +3,15 @@ import UserService from "../services/users.service";
 import { IBaseService } from "../services/BaseService";
 import BaseController from "./BaseController";
 
-interface IUserService extends IBaseService {
-  register(body: any): Promise<any>;
-}
+// interface IUserService extends IBaseService {
+//   register(body: any): Promise<any>;
+// }
 
 class UserController extends BaseController {
-  constructor(service: IBaseService) {
-    super(service);
-    this.initializeUserRoute();
-  }
-
-  // Initialaize route
-  public initializeUserRoute() {
-    this.router.post("/auth/register", this.login.bind(this));
-    this.router.post("/auth/sign_in", this.signIn.bind(this));
+  // Initialaize route - Override
+  public initializeRoutes() {
+    this.router.post("/register", this.login.bind(this));
+    this.router.post("/sign_in", this.signIn.bind(this));
   }
 
   // Register
@@ -31,18 +26,6 @@ class UserController extends BaseController {
     res.json(response);
   }
 }
-
-//         exports.loginRequired = function (
-//             req: Request,
-//             res: Response,
-//             next: NextFunction
-//             ) {
-//                 if (req.body.user) {
-//                     next();
-//                 } else {
-//                     return res.status(401).json({ message: "Unauthorized user!!" });
-//                 }
-//             };
 
 //             exports.profile = function (req: Request, res: Response, next: NextFunction) {
 //                 if (req.body.user) {
