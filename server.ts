@@ -1,5 +1,5 @@
-import apiController from "./controllers/api.controller.js";
-import dbConnection from "./db/dbConnect.js";
+import apiController from "./controllers/api.controller";
+import dbConnection from "./db/dbConnect";
 
 import express from "express";
 import cors from "cors";
@@ -14,5 +14,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api", apiController);
 
+// @IntersectionObserverEntry()
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}`));
