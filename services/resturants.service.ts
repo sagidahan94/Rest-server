@@ -1,58 +1,20 @@
 import Resturant from "../db/models/resturantsSchma";
 import BaseService from "./BaseService";
 
-import mongoose from "mongoose";
+import { Model } from "mongoose";
 
 class ResturantService extends BaseService {
-  constructor(model: mongoose.Model<any, {}, {}, {}>) {
+  constructor(model: Model<any, {}, {}, {}>) {
     super(model);
   }
+
+  //delete - overide
+  public delete(id: string) {
+    const rest = this.model.findById(id);
+    console.log(rest);
+    return rest;
+  }
 }
-
-/*
- class ResturantService {
-   create
-   static addResturant = (body: any) => {
-     return Resturant.create(body)
-       .then((rest) => {
-         return rest;
-       })
-       .catch((error) => console.log(error));
-   };
-
-   read
-   static getResturant = (id: string) => {
-     return Resturant.findById(id)
-       .then((rest) => {
-         return rest;
-       })
-       .catch((error) => console.log(error));
-   };
-
-   update
-   static updateResturant = (body: any, id: string) => {
-     return Resturant.findByIdAndUpdate(id, body)
-       .then(() => {
-         return Resturant.findById(id);
-       })
-       .catch((error) => {
-         console.log(error);
-       });
-   };
-
-   delete
-   static deleteResturant = (id: string) => {
-     return Resturant.findByIdAndDelete(id)
-       .then((rest) => {
-         return rest;
-       })
-       .catch((error) => {
-         console.log(error);
-       });
-   };
- }
- */
-
 const restService = new ResturantService(Resturant);
 
 export default restService;

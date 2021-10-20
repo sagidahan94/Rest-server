@@ -1,47 +1,117 @@
 import ChefService from "../services/chefs.service";
 import BaseController from "./BaseController";
 
-import express, { Request, Response, NextFunction, Router } from "express";
-const router: Router = express.Router();
+import { IBaseService } from "../services/BaseService";
 
 class ChefController extends BaseController {
-  constructor(service: any, router: Router) {
-    super(service, router);
+  constructor(service: IBaseService) {
+    super(service);
   }
 }
 
-/*
-  Create
- router.post("/", async (req: Request, res: Response, next: NextFunction) => {
-   const response = await ChefService.addChef(req.body);
-   res.json(response);
-   next();
- });
-
-  Read
- router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
-   const response = await ChefService.getChef(req.params.id);
-   res.json(response);
-   next();
- });
-
-  Update
- router.put("/:id", async (req: Request, res: Response, next: NextFunction) => {
-   const response = await ChefService.updateChef(req.body, req.params.id);
-   res.json(response);
-   next();
- });
-
-  Delete
- router.delete(
-   "/:id",
-   async (req: Request, res: Response, next: NextFunction) => {
-     const response = await ChefService.deleteChef(req.params.id);
-     res.json(response);
-     next();
-   }
- ); */
-
-const chefController = new ChefController(ChefService, router);
+const chefController = new ChefController(ChefService);
 
 export default chefController.router;
+
+/**
+ * @api {get} /chefs/:id get chef
+ * @apiName GetChef
+ * @apiGroup Chefs
+ *
+ * @apiParam {Number} id Chef unique ID.
+ *
+ * @apiSuccess {Number} _id UniqueID of the Chef.
+ * @apiSuccess {String} name  name of the Chef.
+ * @apiSuccess {String} image  Src of the image of the Chef.
+ * @apiSuccess {String} description  description of the Chef.
+ * @apiSuccess {ObjectId[]} resturants  ObjectId of the resturants of the Chef.
+ *
+ * @apiSuccessExample Success-Response:
+ * {"_id":"616d148874cd008b404b2fd7","name":"Yossi shitrit","image":"abc","description":"marocco","resturants":[],"__v":0}
+ *
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "null"
+ *     }
+ */
+
+/**
+ * @api {post} /chefs/ add chef
+ * @apiName AddChef
+ * @apiGroup Chefs
+ *
+ * @apiBody {String} name of the Chef.
+ * @apiBody {String} image of the Chef.
+ * @apiBody {String} description of the Chef.
+ * @apiBody {ObjectId[]} array of the id of the resturants Chef.
+ *
+ * @apiSuccess {String} name  name of the Chef.
+ * @apiSuccess {String} image  Src of the image of the Chef.
+ * @apiSuccess {String} description  description of the Chef.
+ * @apiSuccess {ObjectId[]} resturants  ObjectId of the resturants of the Chef.
+ * @apiSuccess {Number} _id UniqueID of the Chef.
+ *
+ * @apiSuccessExample Success-Response:
+ *{"name":"Yossi shitrit","image":"abc","description":"marocco","resturants":[],"_id":"616d15cbdc6342ffd4a76bd7","__v":0}
+ *
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "null"
+ *     }
+ */
+
+/**
+ * @api {put} /chefs/:id update chef
+ * @apiName UpdateChef
+ * @apiGroup Chefs
+ *
+ * @apiParam {Number} id Chef unique ID.
+ *
+ * @apiBody {String} name of the Chef.
+ * @apiBody {String} image of the Chef.
+ * @apiBody {String} description of the Chef.
+ * @apiBody {ObjectId[]} array of the id of the resturants Chef.
+ *
+ * @apiSuccess {Number} _id UniqueID of the Chef.
+ * @apiSuccess {String} name  name of the Chef.
+ * @apiSuccess {String} image  Src of the image of the Chef.
+ * @apiSuccess {String} description  description of the Chef.
+ * @apiSuccess {ObjectId[]} resturants  ObjectId of the resturants of the Chef.
+ *
+ * @apiSuccessExample Success-Response:
+ * {"_id":"616d15cbdc6342ffd4a76bd7","name":"Yossi shitrit","image":"abc","description":"marocco","resturants":[],"__v":0} *
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "null"
+ *     }
+ */
+
+/**
+ * @api {delete} /chefs/:id Delete chef
+ * @apiName DeleteChef
+ * @apiGroup Chefs
+ *
+ * @apiParam {Number} id Chef unique ID.
+ *
+ *
+ * @apiSuccess {Number} _id UniqueID of the Chef.
+ * @apiSuccess {String} name  name of the Chef.
+ * @apiSuccess {String} image  Src of the image of the Chef.
+ * @apiSuccess {String} description  description of the Chef.
+ * @apiSuccess {ObjectId[]} resturants  ObjectId of the resturants of the Chef.
+ *
+ * @apiSuccessExample Success-Response:
+ * {"_id":"616d15cbdc6342ffd4a76bd7","name":"Yossi shitrit","image":"abc","description":"marocco","resturants":[],"__v":0} *
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "null"
+ *     }
+ */

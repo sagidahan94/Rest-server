@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const Schema = mongoose.Schema;
+// const Schema = mongoose.Schema;
 
 const resturantSchema = new Schema({
   name: { type: String, trim: true, required: true, default: "" },
@@ -13,7 +13,7 @@ const resturantSchema = new Schema({
   ],
 });
 
-const Resturant = mongoose.model("Resturant", resturantSchema);
+const Resturant = model("Resturant", resturantSchema);
 
 export default Resturant;
 

@@ -1,55 +1,39 @@
-import mongoose from "mongoose";
+import { Model, Query } from "mongoose";
 
-class BaseService {
-  model: mongoose.Model<any, {}, {}, {}>;
+export interface IBaseService {
+  model: Model<any, {}, {}, {}>;
+  add(body: any): Promise<any>;
+  get(id: string): Query<any, any, {}, any>;
+  update(body: any, id: string): Query<any, any, {}, any>;
+  delete(body: string): Query<any, any, {}, any>;
+}
 
-  constructor(model: mongoose.Model<any, {}, {}, {}>) {
+class BaseService implements IBaseService {
+  model: Model<any, {}, {}, {}>;
+
+  constructor(model: Model<any, {}, {}, {}>) {
     this.model = model;
   }
 
   //create
-  public add = (body: any) => {
-    return this.model
-      .create(body)
-      .then((chef) => {
-        return chef;
-      })
-      .catch((error) => console.log(error));
-  };
+  public add(body: any) {
+    return this.model.create(body);
+  }
 
   //read
-  public get = (id: string) => {
-    return this.model
-      .findById(id)
-      .then((chef) => {
-        return chef;
-      })
-      .catch((error) => console.log(error));
-  };
+  public get(id: string) {
+    return this.model.findById(id);
+  }
 
   //update
-  public update = (body: any, id: string) => {
-    return this.model
-      .findByIdAndUpdate(id, body)
-      .then(() => {
-        return this.model.findById(id);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  public update(body: any, id: string) {
+    return this.model.findByIdAndUpdate(id, body);
+  }
 
   //delete
-  public delete = (id: string) => {
-    return this.model
-      .findByIdAndDelete(id)
-      .then((chef) => {
-        return chef;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  public delete(id: string) {
+    return this.model.findByIdAndDelete(id);
+  }
 }
 
 export default BaseService;

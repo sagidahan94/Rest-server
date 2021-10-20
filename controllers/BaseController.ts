@@ -1,13 +1,14 @@
-import express, { Request, Response, NextFunction, Router } from "express";
+import { Request, Response, Router } from "express";
+import { IBaseService } from "../services/BaseService";
 
 class BaseController {
   public router: Router;
   public service: any;
 
-  constructor(service: any, router: Router) {
-    this.router = express.Router();
-    this.initiailizeCRUDroutes();
+  constructor(service: IBaseService) {
+    this.router = Router();
     this.service = service;
+    this.initiailizeCRUDroutes();
   }
 
   protected initiailizeCRUDroutes(): void {
@@ -18,44 +19,28 @@ class BaseController {
   }
 
   // Create
-  protected create = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
+  public async create(req: Request, res: Response) {
     const response = await this.service.add(req.body);
     res.json(response);
-    next();
-  };
+  }
 
   // Read
-  protected read = async (req: Request, res: Response, next: NextFunction) => {
+  public async read(req: Request, res: Response) {
     const response = await this.service.get(req.params.id);
     res.json(response);
-    next();
-  };
+  }
 
   // Update
-  protected update = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
+  public async update(req: Request, res: Response) {
     const response = await this.service.update(req.body, req.params.id);
     res.json(response);
-    next();
-  };
+  }
 
   // Delete
-  protected delete = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
+  public async delete(req: Request, res: Response) {
     const response = await this.service.delete(req.params.id);
     res.json(response);
-    next();
-  };
+  }
 }
 
 export default BaseController;

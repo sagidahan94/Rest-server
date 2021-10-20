@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const Schema = mongoose.Schema;
+// const Schema = mongoose.Schema;
 
 const dishSchema = new Schema({
   name: { type: String, trim: true, required: true, default: "" },
@@ -17,7 +17,7 @@ const dishSchema = new Schema({
   ],
 });
 
-const Dish = mongoose.model("Dish", dishSchema);
+const Dish = model("Dish", dishSchema);
 
 export default Dish;
 
