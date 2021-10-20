@@ -10,7 +10,6 @@ const router: Router = Router();
 // const dishController = new DishesController();
 
 router.use("/auth", UserController);
-router.all("*", authentication);
 router.use("/dishes", DishesController);
 router.use("/chefs", ChefController);
 router.use("/resturants", RestController);

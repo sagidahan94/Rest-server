@@ -1,4 +1,4 @@
-import apiController from "./controllers/api.controller";
+import route from "./routes/route";
 import dbConnection from "./config/dbConnect";
 import dotEnv from "dotenv";
 
@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/api", apiController);
+app.use("/api", route);
 
 // @IntersectionObserverEntry()
 const port = process.env.PORT || 8080;
