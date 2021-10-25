@@ -11,7 +11,6 @@ class ResturantService extends BaseService {
   //delete - overide
   public delete(id: string) {
     const rest = this.model.findById(id);
-    console.log(rest);
     return rest;
   }
 }

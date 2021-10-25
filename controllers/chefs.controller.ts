@@ -1,13 +1,11 @@
 import ChefService from "../services/chefs.service";
 import BaseController from "./BaseController";
 
-import { IBaseService } from "../services/BaseService";
+export default class ChefController extends BaseController {}
 
-class ChefController extends BaseController {}
+// const chefController = new ChefController(ChefService);
 
-const chefController = new ChefController(ChefService);
-
-export default chefController.router;
+// export default chefController.router;
 
 /**
  * @api {get} /chefs/:id get chef

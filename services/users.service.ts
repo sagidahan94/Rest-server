@@ -1,4 +1,4 @@
-import { User } from "/Users/sagidahan/Desktop/Projects/node-server/db/models/userSchema";
+import User from "../db/models/userSchema";
 import BaseService from "./BaseService";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
@@ -28,10 +28,15 @@ class UserService extends BaseService {
     const user = await User.findOne({
       email: body.email,
     });
-    if (!user || !user.comparePassword(body.password)) {
-      return { message: "Authentication failed. Invalid user or password." };
+    // console.log(await user.comparePassword(body.password));
+    if (!user || !(await user.comparePassword(body.password))) {
+      return {
+        success: false,
+        message: "Authentication failed. Invalid user or password.",
+      };
     } else {
       return {
+        success: true,
         token: jwt.sign(
           { fullName: user.fullName, _id: user._id },
           process.env.JWT_SECRET,

@@ -1,12 +1,11 @@
-import { IBaseService } from "../services/BaseService";
 import ResturantService from "../services/resturants.service";
 import BaseController from "./BaseController";
 
-class RestController extends BaseController {}
+export default class RestController extends BaseController {}
 
-const restController = new RestController(ResturantService);
+// const restController = new RestController(ResturantService);
 
-export default restController.router;
+// export default restController.router;
 
 /**
  * @api {get} resturants/:id get Resturant

@@ -1,14 +1,13 @@
 import { Schema, model } from "mongoose";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
 // User interface
-interface IUser {
-  fullName: string;
-  email: string;
-  password: any;
-  created: Date;
-}
+// interface IUser {
+//   fullName: string;
+//   email: string;
+//   password: any;
+//   created: Date;
+// }
 
 /**
  * User Schema
@@ -41,6 +40,6 @@ userSchema.methods.comparePassword = function (password) {
 
 const User = model("User", userSchema);
 
-export { User, IUser };
+export default User;
 
 // {"fullName": "Sagi Dahan", "email" : "sagidahan94@gmail.com" , "password": "!12Sagi34"}

@@ -1,12 +1,11 @@
 import DishService from "../services/dishes.service";
 import BaseController from "./BaseController";
-import { IBaseService } from "../services/BaseService";
 
-class DishesController extends BaseController {}
+export default class DishesController extends BaseController {}
 
-const dishesController = new DishesController(DishService);
+// const dishesController = new DishesController(DishService);
 
-export default dishesController.router;
+// export default dishesController.router;
 
 /**
  * @api {get} /dish/:id get Dish

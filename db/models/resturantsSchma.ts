@@ -1,19 +1,20 @@
 import { Schema, model } from "mongoose";
 
-// const Schema = mongoose.Schema;
+interface Rest {
+  name: string;
+  image: string;
+  dishes: string;
+}
 
-const resturantSchema = new Schema({
+const resturantSchema = new Schema<Rest>({
   name: { type: String, trim: true, required: true, default: "" },
   image: { type: String, trim: true, required: true, default: "" },
-  chef: [
-    { type: Schema.Types.ObjectId, ref: "Chef", required: true, default: [] },
-  ],
   dishes: [
     { type: Schema.Types.ObjectId, ref: "Dish", required: true, default: [] },
   ],
 });
 
-const Resturant = model("Resturant", resturantSchema);
+const Resturant = model<Rest>("Resturant", resturantSchema);
 
 export default Resturant;
 

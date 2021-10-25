@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import User from "../db/models/userSchema";
 
 declare var process: {
   env: {
@@ -8,27 +9,25 @@ declare var process: {
   };
 };
 
-export function authentication(
+export async function authentication(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
-  if (
-    req.headers &&
-    req.headers.authorization &&
-    req.headers.authorization.split(" ")[0] === "JWT"
-  ) {
-    jwt.verify(
-      req.headers.authorization.split(" ")[1],
-      process.env.JWT_SECRET,
-      function (err, decode) {
-        if (err) req.body.user = undefined;
-        req.body.user = decode;
-        next();
-      }
-    );
+  if (req.headers?.authorization?.split(" ")?.[0] === "JWT") {
+    try {
+      const decode: any = jwt.verify(
+        req.headers.authorization.split(" ")?.[1],
+        process.env.JWT_SECRET
+      );
+      console.log(decode);
+      const user = await User.findById(decode.id);
+      // res.locals.id = user.id;
+      next();
+    } catch (error) {
+      res.status(401).json("no authorized");
+    }
   } else {
-    req.body.user = undefined;
-    next();
+    res.status(401).json("no authorized");
   }
 }

@@ -1,17 +1,21 @@
-import DishesController from "./dishes.controller";
-import ChefController from "./chefs.controller";
-import RestController from "./resturants.controller";
-import UserController from "./users.controller";
-import { authentication } from "../middlewares/auth";
+import dishesController from "./dishes.controller";
+import chefController from "./chefs.controller";
+import restController from "./resturants.controller";
+import dishService from "../services/dishes.service";
+import restService from "../services/resturants.service";
+import chefService from "../services/chefs.service";
 import { Router } from "express";
+
+const DishesController = new dishesController(dishService);
+const ChefController = new chefController(chefService);
+const RestController = new restController(restService);
 
 const router: Router = Router();
 
 // const dishController = new DishesController();
 
-router.use("/auth", UserController);
-router.use("/dishes", DishesController);
-router.use("/chefs", ChefController);
-router.use("/resturants", RestController);
+router.use("/dishes", DishesController.router);
+router.use("/chefs", ChefController.router);
+router.use("/resturants", RestController.router);
 
 export default router;

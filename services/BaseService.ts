@@ -20,9 +20,14 @@ class BaseService implements IBaseService {
     return this.model.create(body);
   }
 
-  //read
+  //Get
   public get(id: string) {
     return this.model.findById(id);
+  }
+
+  //Get
+  public getAll() {
+    return this.model.find();
   }
 
   //update

@@ -1,7 +1,14 @@
 import { Schema, model } from "mongoose";
 
+interface Chef {
+  name: string;
+  image: string;
+  description: string;
+  resturants: string[];
+}
+
 // const Schema = Schema;
-const chefSchema = new Schema({
+const chefSchema = new Schema<Chef>({
   name: { type: String, trim: true, required: true, default: "" },
   image: { type: String, trim: true, required: true, default: "" },
   description: { type: String, trim: true, required: true, default: "" },
@@ -15,7 +22,7 @@ const chefSchema = new Schema({
   ],
 });
 
-const Chef = model("Chef", chefSchema);
+const Chef = model<Chef>("Chef", chefSchema);
 
 export default Chef;
 
