@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import UserService from "../services/users.service";
 import BaseController from "./BaseController";
 
@@ -10,16 +10,23 @@ class UserController extends BaseController {
   }
 
   // Register
-  public async register(req: Request, res: Response) {
-    const response = await this.service.register(req.body);
-    res.json(response);
+  public async register(req: Request, res: Response, next: NextFunction) {
+    try {
+      const response = await this.service.register(req.body);
+      res.json(response);
+    } catch (error) {
+      next(error);
+    }
   }
 
   // Sign in
-  public async signIn(req: Request, res: Response) {
-    const response = await this.service.sign_in(req.body);
-    if (response.success) res.status(200).json(response);
-    else res.status(401).json(response);
+  public async signIn(req: Request, res: Response, next: NextFunction) {
+    try {
+      const response = await this.service.sign_in(req.body);
+      res.json(response);
+    } catch (error) {
+      next(error);
+    }
   }
 }
 
