@@ -1,4 +1,5 @@
-import { Request, Response, Router } from "express";
+import { Request, Response, Router, NextFunction } from "express";
+import { nextTick } from "process";
 import { IBaseService } from "../services/BaseService";
 
 class BaseController {
@@ -20,43 +21,53 @@ class BaseController {
   }
 
   // Create
-  public async create(req: Request, res: Response) {
+  public async create(req: Request, res: Response, next: NextFunction) {
     try {
       const response = await this.service.add(req.body);
       res.json(response);
-    } catch (error) {}
+    } catch (error) {
+      next(error);
+    }
   }
 
   // Get
-  public async read(req: Request, res: Response) {
+  public async read(req: Request, res: Response, next: NextFunction) {
     try {
       const response = await this.service.get(req.params.id);
       res.json(response);
-    } catch (error) {}
+    } catch (error) {
+      next(error);
+    }
   }
 
   // Get All
-  public async readAll(req: Request, res: Response) {
+  public async readAll(req: Request, res: Response, next: NextFunction) {
     try {
       const response = await this.service.getAll();
       res.json(response);
-    } catch (error) {}
+    } catch (error) {
+      next(error);
+    }
   }
 
   // Update
-  public async update(req: Request, res: Response) {
+  public async update(req: Request, res: Response, next: NextFunction) {
     try {
       const response = await this.service.update(req.body, req.params.id);
       res.json(response);
-    } catch (error) {}
+    } catch (error) {
+      next(error);
+    }
   }
 
   // Delete
-  public async delete(req: Request, res: Response) {
+  public async delete(req: Request, res: Response, next: NextFunction) {
     try {
       const response = await this.service.delete(req.params.id);
       res.json(response);
-    } catch (erorr) {}
+    } catch (error) {
+      next(error);
+    }
   }
 }
 
