@@ -7,7 +7,7 @@ interface Dish {
   tags: string[];
 }
 
-const dishSchema = new Schema({
+const dishSchema = new Schema<Dish>({
   name: { type: String, trim: true, required: true, default: "" },
   price: { type: Number, trim: true, required: true, default: 0 },
   ingredients: [{ type: String, trim: true, required: true, default: [] }],

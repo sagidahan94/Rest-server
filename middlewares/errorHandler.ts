@@ -18,13 +18,13 @@ class TypeError extends Error {
   }
 }
 
-function errorHandler(
+const errorHandler = (
   error: TypeError,
   res: Response,
   req: Request,
   next: NextFunction
-) {
+) => {
   res.status(error.statusCode).send(error.message);
-}
+};
 
 export { errorHandler, TypeError, HttpStatusCode };
