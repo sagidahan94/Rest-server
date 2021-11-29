@@ -1,7 +1,34 @@
-import ResturantService from "../services/resturants.service";
+import { Request, Response, NextFunction } from "express";
+import { IBaseService } from "../services/BaseService";
 import BaseController from "./BaseController";
 
-export default class RestController extends BaseController {}
+export default class RestController extends BaseController {
+  constructor(service: IBaseService) {
+    super(service);
+  }
+
+  // Get All
+  public async readAll(req: Request, res: Response, next: NextFunction) {
+    try {
+      if (req.query.skip && req.query.limit && req.query.f) {
+        let skip = parseInt(req.query.skip as string);
+        let limit = parseInt(req.query.limit as string);
+        let filter = req.query.f;
+        const response = await this.service.getFilterRestaurants(
+          skip,
+          limit,
+          filter
+        );
+        res.json(response);
+      } else {
+        const response = await this.service.getAll();
+        res.json(response);
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+}
 
 // const restController = new RestController(ResturantService);
 

@@ -3,6 +3,7 @@ import BaseService from "./BaseService";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Model } from "mongoose";
+import { TypeError, HttpStatusCode } from "../middlewares/errorHandler";
 
 declare var process: {
   env: {
@@ -28,21 +29,17 @@ class UserService extends BaseService {
     const user = await User.findOne({
       email: body.email,
     });
-    // console.log(await user.comparePassword(body.password));
     if (!user || !(await user.comparePassword(body.password))) {
-      return {
-        success: false,
-        message: "Authentication failed. Invalid user or password.",
-      };
+      throw new TypeError(
+        "Authentication failed. Invalid user or password",
+        HttpStatusCode.Unauthorized
+      );
     } else {
-      return {
-        success: true,
-        token: jwt.sign(
-          { fullName: user.fullName, _id: user._id },
-          process.env.JWT_SECRET,
-          { expiresIn: process.env.JWT_EXPIRE }
-        ),
-      };
+      return jwt.sign(
+        { fullName: user.fullName, _id: user._id },
+        process.env.JWT_SECRET,
+        { expiresIn: process.env.JWT_EXPIRE }
+      );
     }
   }
 }

@@ -1,8 +1,9 @@
 import route from "./routes/route";
 import dbConnection from "./config/dbConnect";
 import dotEnv from "dotenv";
+import { errorHandler, TypeError } from "./middlewares/errorHandler";
 
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 
 const app = express();
@@ -17,6 +18,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api", route);
+
+// Error Handler
+app.use((err: TypeError, req: Request, res: Response, next: NextFunction) =>
+  errorHandler(err, res, req, next)
+);
 
 // @IntersectionObserverEntry()
 const port = process.env.PORT || 8080;

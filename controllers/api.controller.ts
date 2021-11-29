@@ -1,8 +1,8 @@
 import dishesController from "./dishes.controller";
 import chefController from "./chefs.controller";
-import restController from "./resturants.controller";
+import restController from "./restaurants.controller";
 import dishService from "../services/dishes.service";
-import restService from "../services/resturants.service";
+import restService from "../services/restaurants.service";
 import chefService from "../services/chefs.service";
 import { Router } from "express";
 
@@ -12,10 +12,8 @@ const RestController = new restController(restService);
 
 const router: Router = Router();
 
-// const dishController = new DishesController();
-
 router.use("/dishes", DishesController.router);
 router.use("/chefs", ChefController.router);
-router.use("/resturants", RestController.router);
+router.use("/restaurants", RestController.router);
 
 export default router;

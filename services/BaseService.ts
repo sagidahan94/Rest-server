@@ -25,7 +25,7 @@ class BaseService implements IBaseService {
     return this.model.findById(id);
   }
 
-  //Get
+  //Get All
   public getAll() {
     return this.model.find();
   }

@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import User from "../db/models/userSchema";
+import { TypeError, HttpStatusCode } from "./errorHandler";
 
 declare var process: {
   env: {
@@ -25,9 +26,12 @@ export async function authentication(
       // res.locals.id = user.id;
       next();
     } catch (error) {
-      res.status(401).json("no authorized");
+      next(error);
     }
   } else {
-    res.status(401).json("no authorized");
+    throw new TypeError(
+      "authorization header is wrong",
+      HttpStatusCode.Unauthorized
+    );
   }
 }
