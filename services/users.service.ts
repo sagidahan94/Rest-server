@@ -35,14 +35,11 @@ class UserService extends BaseService {
         HttpStatusCode.Unauthorized
       );
     } else {
-      return {
-        success: true,
-        token: jwt.sign(
-          { fullName: user.fullName, _id: user._id },
-          process.env.JWT_SECRET,
-          { expiresIn: process.env.JWT_EXPIRE }
-        ),
-      };
+      return jwt.sign(
+        { fullName: user.fullName, _id: user._id },
+        process.env.JWT_SECRET,
+        { expiresIn: process.env.JWT_EXPIRE }
+      );
     }
   }
 }

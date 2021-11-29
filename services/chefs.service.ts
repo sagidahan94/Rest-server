@@ -6,6 +6,11 @@ class ChefService extends BaseService {
   constructor(model: Model<any, {}, {}, {}>) {
     super(model);
   }
+
+  // get - Override
+  public get(id: string) {
+    return this.model.findById(id).populate("restaurants");
+  }
 }
 
 const chefService = new ChefService(Chef);

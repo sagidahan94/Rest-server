@@ -1,5 +1,4 @@
 import { Request, Response, Router, NextFunction } from "express";
-import { nextTick } from "process";
 import { IBaseService } from "../services/BaseService";
 
 class BaseController {
@@ -39,6 +38,16 @@ class BaseController {
       next(error);
     }
   }
+
+  // // Get
+  // public async readLimit(req: Request, res: Response, next: NextFunction) {
+  //   try {
+  //     const response = await this.service.getLimit(req.params.limit);
+  //     res.json(response);
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // }
 
   // Get All
   public async readAll(req: Request, res: Response, next: NextFunction) {

@@ -4,20 +4,19 @@ interface Chef {
   name: string;
   image: string;
   description: string;
-  resturants: string[];
+  restaurants: string[];
 }
 
 // const Schema = Schema;
 const chefSchema = new Schema<Chef>({
-  name: { type: String, trim: true, required: true, default: "" },
-  image: { type: String, trim: true, required: true, default: "" },
-  description: { type: String, trim: true, required: true, default: "" },
-  resturants: [
+  name: { type: String, trim: true, required: true },
+  image: { type: String, trim: true, required: true },
+  description: { type: String, trim: true, required: true },
+  restaurants: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Resturant",
+      ref: "Restaurant",
       required: true,
-      default: [],
     },
   ],
 });
@@ -28,6 +27,6 @@ export default Chef;
 
 /*
 
- {"name": "Yossi shitrit", "image":"abc" , "description" : "marocco","resturants": []}
+ {"name": "Yossi shitrit", "image":"abc" , "description": "blalslds", "restaurants": []}
  
  */
