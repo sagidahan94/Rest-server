@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { IBaseService } from "../services/BaseService";
-import BaseController from "./BaseController";
+import { IBaseService } from "../services/baseService";
+import BaseController from "./baseController";
 
 export default class RestController extends BaseController {
   constructor(service: IBaseService) {

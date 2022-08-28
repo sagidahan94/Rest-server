@@ -8,7 +8,7 @@ export interface IBaseService {
   delete(body: string): Query<any, any, {}, any>;
 }
 
-class BaseService implements IBaseService {
+export class BaseService implements IBaseService {
   model: Model<any, {}, {}, {}>;
 
   constructor(model: Model<any, {}, {}, {}>) {
@@ -40,5 +40,3 @@ class BaseService implements IBaseService {
     return this.model.findByIdAndDelete(id);
   }
 }
-
-export default BaseService;

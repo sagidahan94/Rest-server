@@ -1,5 +1,5 @@
 import ChefService from "../services/chefs.service";
-import BaseController from "./BaseController";
+import BaseController from "./baseController";
 
 export default class ChefController extends BaseController {}
 

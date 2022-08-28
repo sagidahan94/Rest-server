@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import UserService from "../services/users.service";
-import BaseController from "./BaseController";
+import BaseController from "./baseController";
 
 class UserController extends BaseController {
   // Initialaize route - Override

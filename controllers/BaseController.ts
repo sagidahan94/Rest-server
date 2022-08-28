@@ -1,5 +1,5 @@
 import { Request, Response, Router, NextFunction } from "express";
-import { IBaseService } from "../services/BaseService";
+import { IBaseService } from "../services/baseService";
 
 class BaseController {
   public router: Router;

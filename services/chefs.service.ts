@@ -1,5 +1,5 @@
 import Chef from "../db/models/chefSchema";
-import BaseService from "./BaseService";
+import { BaseService } from "./baseService";
 import { Model } from "mongoose";
 
 class ChefService extends BaseService {

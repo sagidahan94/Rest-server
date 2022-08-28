@@ -1,5 +1,5 @@
 import User from "../db/models/userSchema";
-import BaseService from "./BaseService";
+import { BaseService } from "./baseService";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Model } from "mongoose";

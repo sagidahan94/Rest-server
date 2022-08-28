@@ -1,5 +1,5 @@
 import Dish from "../db/models/dishesSchema";
-import BaseService from "./BaseService";
+import { BaseService } from "./baseService";
 
 import { Model } from "mongoose";
 

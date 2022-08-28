@@ -1,5 +1,4 @@
-import DishService from "../services/dishes.service";
-import BaseController from "./BaseController";
+import BaseController from "./baseController";
 
 export default class DishesController extends BaseController {}
 

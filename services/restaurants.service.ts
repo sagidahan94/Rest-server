@@ -1,5 +1,5 @@
 import Restaurant from "../db/models/restaurantsSchma";
-import BaseService from "./BaseService";
+import { BaseService } from "./baseService";
 import { Model } from "mongoose";
 
 // const PAGE_SIZE = 4;
